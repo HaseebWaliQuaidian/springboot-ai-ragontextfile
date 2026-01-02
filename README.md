@@ -5,7 +5,7 @@ Here are common config used in the poject
 
 We have 2 controllers in the project  
 Controller1::RAGController  
-  Has 3 api calls exposed V1  
+  Has 3 api calls exposed  
     &emsp;V1  
       &emsp;&emsp;Api loads the documents and chunks it into small pieces so that it can store it and load it into VectorStore(Autowired Bean)  
       &emsp;&emsp;It returns the result on the basis of query passed as parameters.  
