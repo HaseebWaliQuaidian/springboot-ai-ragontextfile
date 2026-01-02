@@ -12,17 +12,16 @@ Controller1::RAGController
     &emsp;V2  
       &emsp;&emsp;Api does everything like V1 but uses similarity search to impact the search criteria on VectorStore (can be seen in AiService file).  
     &emsp;V3  
-      &emsp;&emsp;V3 Api is simple chatModel api (which is not using (sampleDocuments) for searching the result (we are not restricting our chatModel to get the results out from the textFile only. We  
-      &emsp;&emsp;will do it in other controller defined in the document.  
+      &emsp;&emsp;V3 Api is simple chatModel api (which is not using (sampleDocuments) for searching the result (we are not restricting our chatModel to get the results out from the textFile &emsp;&emsp;only. We will do it in other controller defined in the document.  
 Controller:: UserAndSystemChatRagController  
-  Has only 1 api exposed  
-    /query  
-      Does the query operation on Documents like V1 (RagController) but instead of String get's List<Documents>.  
-      Now it will use chatModel and will pass Promot using 2 parameters  
-        1 - UserMessage (query as user message like 'what did author do while growing up'  
-        2 - Message of type SystemMessage  
-          SystemMessage is defined in AiService in method getSystemMessage which contextualizes the chatModel with intstructions provided in /resources/prompt/system.ts file  
-        Now chatModel will use the query and systemMessage, over the List<Documents> to give results
+  &emsp;&emsp;Has only 1 api exposed  
+    &emsp;&emsp;/query  
+      &emsp;&emsp;&emsp;Does the query operation on Documents like V1 (RagController) but instead of String get's List<Documents>.  
+      &emsp;&emsp;&emsp;Now it will use chatModel and will pass Promot using 2 parameters  
+        &emsp;&emsp;&emsp;&emsp;1 - UserMessage (query as user message like 'what did author do while growing up'  
+        &emsp;&emsp;&emsp;&emsp;2 - Message of type SystemMessage  
+          &emsp;&emsp;&emsp;&emsp;&emsp;SystemMessage is defined in AiService in method getSystemMessage which contextualizes the chatModel with intstructions provided in /resources/prompt/system.ts file  
+        &emsp;&emsp;&emsp;Now chatModel will use the query and systemMessage, over the List<Documents> to give results
     
     
     
