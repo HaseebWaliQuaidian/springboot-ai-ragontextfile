@@ -1,0 +1,28 @@
+In this project We have learnt how to use RAG Retrieval-Augmented Generation using textFile  
+Here are common config used in the poject  
+
+1 -  Config/AiConfig file produces a bean of type VectorStore (in memory vector Store) for storing data.  
+
+We have 2 controllers in the project  
+Controller1::RAGController  
+  Has 3 api calls exposed V1  
+    V1  
+      Api loads the documents and chunks it into small pieces so that it can store it and load it into VectorStore(Autowired Bean)  
+      It returns the result on the basis of query passed as parameters.
+    V2  
+      Api does everything like V1 but uses similarity search to impact the search criteria on VectorStore (can be seen in AiService file).  
+    V3  
+      V3 Api is simple chatModel api (which is not using (sampleDocuments) for searching the result (we are not restricting our chatModel to get the results out from the textFile only. We  
+      will do it in other controller defined in the document.  
+Controller:: UserAndSystemChatRagController  
+  Has only 1 api exposed  
+    /query  
+      Does the query operation on Documents like V1 (RagController) but instead of String get's List<Documents>.  
+      Now it will use chatModel and will pass Promot using 2 parameters  
+        1 - UserMessage (query as user message like 'what did author do while growing up'  
+        2 - Message of type SystemMessage  
+          SystemMessage is defined in AiService in method getSystemMessage which contextualizes the chatModel with intstructions provided in /resources/prompt/system.ts file  
+        Now chatModel will use the query and systemMessage, over the List<Documents> to give results
+    
+    
+    
