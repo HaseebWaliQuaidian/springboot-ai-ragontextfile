@@ -20,7 +20,7 @@ Controller:: UserAndSystemChatRagController
       &emsp;&emsp;&emsp;Now it will use chatModel and will pass Promot using 2 parameters  
         &emsp;&emsp;&emsp;&emsp;1 - UserMessage (query as user message like 'what did author do while growing up'  
         &emsp;&emsp;&emsp;&emsp;2 - Message of type SystemMessage  
-          &emsp;&emsp;&emsp;&emsp;&emsp;SystemMessage is defined in AiService in method getSystemMessage which contextualizes the chatModel with intstructions provided in /resources/prompt/system.ts file  
+          &emsp;&emsp;&emsp;&emsp;&emsp;SystemMessage is defined in AiService in method getSystemMessage which contextualizes the chatModel with intstructions provided in     &emsp;&emsp;&emsp;&emsp;&emsp;/resources/prompt/system.ts file  
         &emsp;&emsp;&emsp;Now chatModel will use the query and systemMessage, over the List<Documents> to give results
     
     
