@@ -13,7 +13,7 @@ Controller1::RAGController
       &emsp;&emsp;Api does everything like V1 but uses similarity search to impact the search criteria on VectorStore (can be seen in AiService file).  
     &emsp;V3  
       &emsp;&emsp;V3 Api is simple chatModel api (which is not using (sampleDocuments) for searching the result (we are not restricting our chatModel to get the results out from the textFile only. We will do it in other controller defined in the document.  
-Controller:: UserAndSystemChatRagController  
+Controller2:: UserAndSystemChatRagController  
   &emsp;&emsp;Has only 1 api exposed  
     &emsp;&emsp;/query  
       &emsp;&emsp;&emsp;Does the query operation on Documents like V1 (RagController) but instead of String get's List<Documents>.  
