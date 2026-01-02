@@ -6,14 +6,14 @@ Here are common config used in the poject
 We have 2 controllers in the project  
 Controller1::RAGController  
   Has 3 api calls exposed V1  
-    V1  
-      Api loads the documents and chunks it into small pieces so that it can store it and load it into VectorStore(Autowired Bean)  
-      It returns the result on the basis of query passed as parameters.
-    V2  
-      Api does everything like V1 but uses similarity search to impact the search criteria on VectorStore (can be seen in AiService file).  
-    V3  
-      V3 Api is simple chatModel api (which is not using (sampleDocuments) for searching the result (we are not restricting our chatModel to get the results out from the textFile only. We  
-      will do it in other controller defined in the document.  
+    &emsp;V1  
+      &emsp;&emsp;Api loads the documents and chunks it into small pieces so that it can store it and load it into VectorStore(Autowired Bean)  
+      &emsp;&emsp;It returns the result on the basis of query passed as parameters.  
+    &emsp;V2  
+      &emsp;&emsp;Api does everything like V1 but uses similarity search to impact the search criteria on VectorStore (can be seen in AiService file).  
+    &emsp;V3  
+      &emsp;&emsp;V3 Api is simple chatModel api (which is not using (sampleDocuments) for searching the result (we are not restricting our chatModel to get the results out from the textFile only. We  
+      &emsp;&emsp;will do it in other controller defined in the document.  
 Controller:: UserAndSystemChatRagController  
   Has only 1 api exposed  
     /query  
