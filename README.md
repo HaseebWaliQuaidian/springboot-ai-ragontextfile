@@ -1,31 +1,106 @@
-In this project We have learnt how to use RAG Retrieval-Augmented Generation using textFile  
-Here are common config used in the poject  
+# RAG (Retrieval-Augmented Generation) – Spring AI Learning Project
 
-1 -  Config/AiConfig file produces a bean of type VectorStore (in memory vector Store) for storing data.  
+This project demonstrates how to implement **Retrieval-Augmented Generation (RAG)** using a **text file** as the knowledge source with **Spring AI**.
 
-We have 2 controllers in the project  
-## Controller1::RAGController  
-  Has 3 api calls exposed  
-    &emsp;V1  
-      &emsp;&emsp;Api loads the documents and chunks it into small pieces so that it can store it and load it into VectorStore(Autowired Bean)  
-      &emsp;&emsp;It returns the result on the basis of query passed as parameters.  
-    &emsp;V2  
-      &emsp;&emsp;Api does everything like V1 but uses similarity search to impact the search criteria on VectorStore (can be seen in AiService file).  
-    &emsp;V3  
-      &emsp;&emsp;V3 Api is simple chatModel api (which is not using (sampleDocuments) for searching the result (we are not restricting our chatModel to get the results out from the textFile only. We will do it in other controller defined in the document.  
-## Controller2:: UserAndSystemChatRagController  
-  &emsp;&emsp;Has only 1 api exposed  
-    &emsp;&emsp;/query  
-      &emsp;&emsp;&emsp;Does the query operation on Documents like V1 (RagController) but instead of String get's List<Documents>.  
-      &emsp;&emsp;&emsp;Now it will use chatModel and will pass Promot using 2 parameters  
-        &emsp;&emsp;&emsp;&emsp;1 - UserMessage (query as user message like 'what did author do while growing up'  
-        &emsp;&emsp;&emsp;&emsp;2 - Message of type SystemMessage  
-          &emsp;&emsp;&emsp;&emsp;&emsp;SystemMessage is defined in AiService in method getSystemMessage which contextualizes the chatModel with intstructions provided in     &emsp;&emsp;&emsp;&emsp;&emsp;/resources/prompt/system.ts file  
-        &emsp;&emsp;&emsp;Now chatModel will use the query and systemMessage, over the List<Documents> to give results  
-## Controller3:: ChatClientController  
-&emsp;&emsp;Has only 1 api exposed  
-    &emsp;&emsp;/query  
-    &emsp;&emsp;&emsp;It's like controller2 but with improved ChatClient api and simpler code. Rest of the functionality is same.
-    
-    
-    
+The goal of this project is to **learn RAG step-by-step**, starting from manual approaches and gradually moving toward **cleaner, production-style APIs**.
+
+---
+
+## Common Configuration
+
+### `Config/AiConfig`
+- Produces a **`VectorStore` bean** (in-memory vector store).
+- This store is used to:
+  - chunk documents
+  - generate embeddings
+  - store and retrieve relevant context for RAG queries
+
+---
+
+## Controllers Overview
+
+The project contains **three controllers**, each demonstrating a different way of interacting with RAG and LLMs.
+
+---
+
+## Controller 1: `RAGController`
+
+This controller exposes **three APIs** to demonstrate incremental RAG concepts.
+
+### **V1**
+- Loads documents from a text file.
+- Splits (chunks) them into smaller pieces.
+- Stores the chunks in the **`VectorStore`** (Autowired bean).
+- Executes a query and returns results based on retrieved documents.
+
+### **V2**
+- Performs the same operations as **V1**.
+- Additionally uses **similarity search** to improve retrieval quality.
+- The similarity logic can be found in the `AiService` class.
+
+### **V3**
+- A **simple `ChatModel` API**.
+- Does **not** use `sampleDocuments` or restrict answers to the text file.
+- This demonstrates a **pure LLM chat** without RAG.
+- RAG-based contextualisation is shown in the next controller.
+
+---
+
+## Controller 2: `UserAndSystemChatRagController`
+
+This controller demonstrates **manual RAG using system and user messages**.
+
+### Exposed API
+- `/query`
+
+### Flow
+- Performs a document query similar to **V1** in `RAGController`.
+- Instead of a `String`, it works with a **`List<Document>`**.
+- Uses `ChatModel` and constructs a `Prompt` with two inputs:
+
+#### 1️⃣ `UserMessage`
+- Contains the user query  
+  *(e.g. “What did the author do while growing up?”)*
+
+#### 2️⃣ `SystemMessage`
+- Provides instructions and context to the LLM.
+- Created in `AiService` via the `getSystemMessage()` method.  
+- Instructions are loaded from: resources/prompt/system.ts
+### Result
+- The `ChatModel` uses:
+- the **user query**
+- the **system instructions**
+- the **retrieved documents**
+- to generate a context-aware response.
+
+---
+
+## Controller 3: `ChatClientController`
+
+This controller demonstrates the **same RAG behavior as Controller 2**, but using the **`ChatClient` API**.
+
+### Exposed API
+- `/query`
+
+### Key Differences
+- Uses **`ChatClient` instead of directly calling `ChatModel`**.
+- Significantly **simpler and cleaner code**.
+- RAG logic and behavior remain the same.
+- Represents a **more production-ready approach**.
+
+---
+
+## Learning Progression Summary
+
+- **Controller 1** → Basic RAG concepts and similarity search  
+- **Controller 2** → Manual RAG with `ChatModel`, `UserMessage`, and `SystemMessage`  
+- **Controller 3** → Cleaner, production-style RAG using `ChatClient`
+
+---
+
+## Key Takeaway
+
+This project intentionally shows **multiple ways to implement RAG**, helping understand:
+- what happens under the hood
+- when to use manual control
+- when to rely on higher-level abstractions like `ChatClient`  
