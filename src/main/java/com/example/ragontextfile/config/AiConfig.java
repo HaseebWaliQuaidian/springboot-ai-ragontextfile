@@ -15,4 +15,9 @@ public class AiConfig {
     public VectorStore vectorStore(EmbeddingModel embeddingModel) {
         return SimpleVectorStore.builder(embeddingModel).build();
     }
+
+    @Bean
+    public ChatClient chatModel(ChatClient.Builder chatClientBuilder) {
+        return chatClientBuilder.build();
+    }
 }

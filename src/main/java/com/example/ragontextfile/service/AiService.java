@@ -60,6 +60,10 @@ public class AiService {
         return systemMessage;
     }
 
+    public VectorStore getVectorStore() {
+        extractVectorDocuments();
+        return vectorStore;
+    }
 
     private void extractVectorDocuments() {
         TextReader textReader = new TextReader(sampleTextResource);
@@ -74,6 +78,8 @@ public class AiService {
 
         vectorStore.add(textSplitter.split(documents));
     }
+
+
 
 
 
