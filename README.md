@@ -22,9 +22,9 @@ We have 2 controllers in the project
         &emsp;&emsp;&emsp;&emsp;2 - Message of type SystemMessage  
           &emsp;&emsp;&emsp;&emsp;&emsp;SystemMessage is defined in AiService in method getSystemMessage which contextualizes the chatModel with intstructions provided in     &emsp;&emsp;&emsp;&emsp;&emsp;/resources/prompt/system.ts file  
         &emsp;&emsp;&emsp;Now chatModel will use the query and systemMessage, over the List<Documents> to give results  
-## Controller2:: ChatClientController  
+## Controller3:: ChatClientController  
 &emsp;&emsp;Has only 1 api exposed  
-    &emsp;&emsp;/query
+    &emsp;&emsp;/query  
     &emsp;&emsp;&emsp;It's like controller2 but with improved ChatClient api and simpler code. Rest of the functionality is same.
     
     
